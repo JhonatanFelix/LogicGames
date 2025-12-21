@@ -12,18 +12,18 @@ document.addEventListener('DOMContentLoaded', function() {
             randomName = JSON.parse(xhr.responseText).random_name;
         }
     };
-    xhr.open('GET', '/random_number', true);
+    xhr.open('GET', '/random_name', true);
     xhr.send();
 
     submitButton.addEventListener('click', function(){
-        var userGuess = parseInt(guessInput.value);
+        var userGuess = guessInput.value.trim();
         userGuesses += 1;
         
         if (randomName !== undefined) {
             if (userGuess !== randomName) {
                 hint.textContent = 'Try another name'
             } else if (userGuess == randomName) {
-             hint.textContent = 'Congratulations! You guessed the correct name in ${userGuesses} guesses.'
+             hint.textContent = `Congratulations! You guessed the correct name in ${userGuesses} guesses.`
             } else {
             console.log('Error')
             }

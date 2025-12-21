@@ -15,5 +15,6 @@ def random_name():
     random_name = random.choice(names)
     return jsonify(random_name=random_name)
 
+
 if __name__=='__main__':
     app.run(debug=True)
