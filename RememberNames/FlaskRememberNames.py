@@ -1,13 +1,17 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request, session, redirect, url_for
 import random
 
 app = Flask(__name__)
 
-names = ["Jason", "Jennyfer", "Pablo", "Tyrony", "Plancton", "Roberson"]
+names = ["Jason","Luis", "Jennyfer", "Pablo", 
+        "Tyrony", "Plancton", "Felipe", "Roberson", "Carlitos",
+        "Pandero"]
 
 @app.route('/')
 def index():
-    return render_template('index.html', random_name=random_name)
+    selected = random.sample(names, 4)
+    session["names"] = selected
+    return render_template('show.html', names=selected)
 
 
 @app.route('/random_name')
